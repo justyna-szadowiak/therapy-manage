@@ -1,0 +1,33 @@
+<mat-icon matBadge="13" matBadgeColor="warn">message</mat-icon>
+    <span class="cdk-visually-hidden"></span>
+
+<section>
+  <div class="label"></div>
+  <div class="button-row">
+    <div class="flex-container">
+      <div class="button-container">
+        <button mat-fab color="primary" aria-label="Icon button with a edit icon">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<mat-card class="therapist-calendar">
+  <mat-calendar [(selected)]="selected"></mat-calendar>
+</mat-card>
+<p>Selected date: {{selected}}</p>
+
+<mat-form-field appearance="fill">
+  <mat-label>Mark days when not available</mat-label>
+  <mat-select [formControl]="days" multiple>
+    <mat-select-trigger>
+      {{days.value ? days.value[0] : ''}}
+      <span *ngIf="days.value?.length > 1" class="additional-selection">
+        (+{{days.value.length - 1}} {{days.value?.length === 2 ? 'other' : 'others'}})
+      </span>
+    </mat-select-trigger>
+    <mat-option *ngFor="let days of dayList" [value]="days">{{days}}</mat-option>
+  </mat-select>
+</mat-form-field>
