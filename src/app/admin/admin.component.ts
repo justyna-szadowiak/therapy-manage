@@ -10,7 +10,8 @@ import * as moment from 'moment';
 export class AdminComponent implements OnInit {
   selected: Date | null = null;
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }

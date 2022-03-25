@@ -1,14 +1,13 @@
-<!-- <nav>
+<nav>
   <a routerLink="/admin">Admin</a>
   <a routerLink="/parent">Parent</a>
   <a routerLink="/therapist">Therapist</a>
-</nav> -->
+</nav>
 
-<h4></h4>
 <mat-form-field appearance="fill">
   <mat-label>Role</mat-label>
   <mat-select>
-    <mat-option *ngFor="let role of role" [value]="role.value">
+    <mat-option *ngFor="let role of roles" [value]="role.value">
       {{role.viewValue}}
     </mat-option>
   </mat-select>

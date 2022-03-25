@@ -12,7 +12,7 @@ interface Role {
 })
 export class AppComponent {
   title = 'therapy-manager';
-  role: Role[] = [
+  roles: Role[] = [
     {value: 'admin-0', viewValue: 'Admin'},
     {value: 'therapist-1', viewValue: 'Therapist'},
   ];
