@@ -1,10 +1,10 @@
-<nav>
+<nav class="roles">
   <a routerLink="/admin">Admin</a>
-  <a routerLink="/parent">Parent</a>
+  <!-- <a routerLink="/parent">Parent</a> -->
   <a routerLink="/therapist">Therapist</a>
 </nav>
 
-<mat-form-field appearance="fill">
+<mat-form-field class="role-switch" appearance="fill">
   <mat-label>Role</mat-label>
   <mat-select>
     <mat-option *ngFor="let role of roles" [value]="role.value">

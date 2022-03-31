@@ -3,14 +3,20 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TherapyManagerBackendService {
-  tst$: Observable<string>;
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) {
-    this.tst$ = this.http.get('http://localhost:3000/', {responseType: 'text'});
-    this.tst$.subscribe(tst => {console.log(tst);
-    })
+  getAllPatients(): Observable<any[]> {
+    return this.http.get<any[]>('http://localhost:3000/patients');
+  }
+
+  getAllTherapies(): Observable<any[]> {
+    return this.http.get<any[]>('http://localhost:3000/therapies');
+  }
+
+  getAllTherapists(): Observable<any[]> {
+    return this.http.get<any[]>('http://localhost:3000/therapists');
   }
 }
