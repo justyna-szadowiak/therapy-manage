@@ -12,11 +12,13 @@ export class AdminComponent implements OnInit {
   patients$: Observable<any[]>;
   therapies$: Observable<any[]>;
   therapists$: Observable<any[]>;
+  planners$: Observable<any[]>;
 
   constructor(private endpoints: TherapyManagerBackendService) {
     this.patients$ = this.endpoints.getAllPatients();
     this.therapies$ = this.endpoints.getAllTherapies();
     this.therapists$ = this.endpoints.getAllTherapists();
+    this.planners$ = this.endpoints.getAllPlanners();
   }
 
   ngOnInit(): void {}

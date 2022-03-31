@@ -19,4 +19,8 @@ export class TherapyManagerBackendService {
   getAllTherapists(): Observable<any[]> {
     return this.http.get<any[]>('http://localhost:3000/therapists');
   }
+
+  getAllPlanners(): Observable<any[]> {
+    return this.http.get<any[]>('http://localhost:3000/calendar');
+  }
 }
