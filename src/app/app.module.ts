@@ -6,8 +6,12 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
-import { MatIconModule } from '@angular/material/icon'
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,13 +20,15 @@ import { AdminComponent } from './admin/admin.component';
 import { TherapistComponent } from './therapist/therapist.component';
 import { ParentComponent } from './parent/parent.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TherapistPlanComponent } from './therapist-plan/therapist-plan.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminComponent,
     TherapistComponent,
-    ParentComponent
+    ParentComponent,
+    TherapistPlanComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,14 +40,15 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatSelectModule,
     MatIconModule,
+    MatMenuModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatExpansionModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [
-    MatDatepickerModule,
-    MatNativeDateModule
-  ],
-  bootstrap: [AppComponent]
+  providers: [MatDatepickerModule, MatNativeDateModule],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
