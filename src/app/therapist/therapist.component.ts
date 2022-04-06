@@ -11,7 +11,7 @@ export class TherapistComponent implements OnInit {
   selected: Date | null = null;
 
   days = new FormControl();
-  dayList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  dayList: number[] = [];
 
   constructor() { }
 
