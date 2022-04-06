@@ -9,22 +9,23 @@ import { TherapyManagerBackendService } from '../therapy-manager-backend.service
   styleUrls: ['./therapist-plan.component.scss'],
 })
 export class TherapistPlanComponent implements OnInit {
-  public dataSource: PlanForTherapist[] = [];
   patients$: Observable<Patient[]>;
   plannerForTherapist$: Observable<PlanForTherapist[]>;
+  getAllPlanForTherapist: any;
 
   constructor(public endpoints: TherapyManagerBackendService) {
     this.patients$ = this.endpoints.getAllPatients();
     this.plannerForTherapist$ = this.endpoints.getAllPlanForTherapist();
   }
 
-  public displayedColumns: PlanForTherapist[] = [
+  public displayedColumns: string[] = [
     'patient_name',
     'kind_of_therapy',
     'date_time',
   ];
+  public dataSource: PlanForTherapist[] = [];
 
   async ngOnInit(): Promise<void> {
-    this.dataSource = await this.endpoints.getAllPlanForTherapist();
+    this.dataSource = await this.getAllPlanForTherapist();
   }
 }
