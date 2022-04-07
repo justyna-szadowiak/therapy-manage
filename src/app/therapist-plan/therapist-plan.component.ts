@@ -26,6 +26,6 @@ export class TherapistPlanComponent implements OnInit {
   public dataSource: PlanForTherapist[] = [];
 
   async ngOnInit(): Promise<void> {
-    this.dataSource = await this.getAllPlanForTherapist();
+    // this.dataSource = await this.getAllPlanForTherapist();
   }
 }

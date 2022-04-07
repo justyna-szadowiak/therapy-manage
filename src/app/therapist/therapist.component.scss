@@ -6,8 +6,19 @@
   background-color: #757575;
 }
 
-.therapist-calendar {
-  width: 600px;
-  height: 800px;
-  margin: 20px;
+
+.calendar-container {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+
+  .calendar,
+  .day-info{
+    width: calc(50% - 5px);
+
+  }
+
+  .day-info {
+
+  }
 }

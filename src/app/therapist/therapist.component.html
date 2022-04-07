@@ -1,5 +1,4 @@
 <section>
-  <div class="label"></div>
   <div class="button-row">
     <div class="flex-container">
       <div class="button-container">
@@ -30,20 +29,37 @@
   </div>
 </section>
 
-<mat-card class="therapist-calendar">
-  <mat-calendar [(selected)]="selected"></mat-calendar>
-</mat-card>
-<p>Selected date: {{selected}}</p>
+<div class="calendar-container">
+  <div class="calendar">
+    <mat-card class="therapist-calendar">
+      <mat-calendar [(selected)]="selected" (monthSelected)="onMonthSelected($event)"></mat-calendar>
+    </mat-card>
+  </div>
+  <div class="day-info">
+    Hello here:
+    <div class='plan' *ngFor="let plan of monthPlan$ | async">
+      <div class="id">
+        {{plan.therapist}}
+      </div>
+      <div class="kind_of_therapy">
+        {{plan.kind_of_therapy}}
+      </div>
+      <div class="date">
+        {{plan.date_time | date}}
+      </div>
+    </div>
+  </div>
+</div>
 
-<mat-form-field appearance="fill">
-  <mat-label>Mark days when not available</mat-label>
-  <mat-select [formControl]="days" multiple>
-    <mat-select-trigger>
-      {{days.value ? days.value[0] : ''}}
-      <span *ngIf="days.value?.length > 1" class="additional-selection">
-        (+{{days.value.length - 1}} {{days.value?.length === 2 ? 'other' : 'others'}})
-      </span>
-    </mat-select-trigger>
-    <mat-option *ngFor="let days of dayList" [value]="days">{{days}}</mat-option>
-  </mat-select>
-</mat-form-field>
+<!--<mat-form-field appearance="fill">-->
+<!--  <mat-label>Mark days when not available</mat-label>-->
+<!--  <mat-select [formControl]="days" multiple>-->
+<!--    <mat-select-trigger>-->
+<!--      {{days.value ? days.value[0] : ''}}-->
+<!--      <span *ngIf="days.value?.length > 1" class="additional-selection">-->
+<!--        (+{{days.value.length - 1}} {{days.value?.length === 2 ? 'other' : 'others'}})-->
+<!--      </span>-->
+<!--    </mat-select-trigger>-->
+<!--    <mat-option *ngFor="let days of dayList" [value]="days">{{days}}</mat-option>-->
+<!--  </mat-select>-->
+<!--</mat-form-field>-->
