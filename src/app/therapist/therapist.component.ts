@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import { BehaviorSubject, filter, map, Observable, Subject, take, takeUntil } from "rxjs";
 import { TherapyManagerBackendService } from "../therapy-manager-backend.service";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
-import { Plan } from "../interfaces";
+import { PlanForTherapist } from "../interfaces";
 
 @UntilDestroy()
 @Component({
@@ -14,11 +14,11 @@ import { Plan } from "../interfaces";
 })
 export class TherapistComponent implements OnInit {
   selected: Date | null = null;
-  monthPlan$: BehaviorSubject<Plan[]> = new BehaviorSubject<Plan[]>([])
+  monthPlan$: BehaviorSubject<PlanForTherapist[]> = new BehaviorSubject<PlanForTherapist[]>([])
   days = new FormControl();
   dayList: number[] = [];
   dataByMonth$: Observable<any> | undefined;
-  selectedDayPlan$: BehaviorSubject<Plan[]> = new BehaviorSubject<Plan[]>([])
+  selectedDayPlan$: BehaviorSubject<PlanForTherapist[]> = new BehaviorSubject<PlanForTherapist[]>([])
 
   constructor(
     public endpoints: TherapyManagerBackendService
@@ -33,7 +33,7 @@ export class TherapistComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataByMonth$ = this.endpoints.getAllPlanners();
+    this.dataByMonth$ = this.endpoints.getAllPlanForTherapist();
     this.dataByMonth$ =  this.endpoints.getPlanForTherapistByMonth('3');
 
     this.dataByMonth$.pipe(
@@ -43,7 +43,7 @@ export class TherapistComponent implements OnInit {
       }),
       map((obj) => {
         return {
-          therapis: obj.therapis,
+          therapist: obj.therapist,
           date: obj.data
         }
       })
@@ -55,8 +55,8 @@ export class TherapistComponent implements OnInit {
   onSelectedChange(event: Date) {
     this.monthPlan$.pipe(
       take(1),
-      map((plans: Plan[]) => {
-        return plans.filter((plan: Plan) => {
+      map((plans: PlanForTherapist[]) => {
+        return plans.filter((plan: PlanForTherapist) => {
           let planDate = new Date(plan.date_time);
           let planDateString = `${planDate.getDay()}/${planDate.getMonth()}/${planDate.getUTCFullYear()}`
           let eventDateString = `${event.getDay()}/${event.getMonth()}/${event.getUTCFullYear()}`
@@ -64,7 +64,7 @@ export class TherapistComponent implements OnInit {
           return planDateString === eventDateString;
         })
       })
-    ).subscribe((plans: Plan[]) => {
+    ).subscribe((plans: PlanForTherapist[]) => {
       this.selectedDayPlan$.next(plans)
     })
   }

@@ -38,14 +38,20 @@
   <div class="month-info">
     <h2>Month info:</h2>
     <div class='plan' *ngFor="let plan of monthPlan$ | async">
-      <div class="id">
+      <div class="therapist">
         {{plan.therapist}}
+      </div>
+      <div class="patient">
+        {{plan.patient_name}}
       </div>
       <div class="kind_of_therapy">
         {{plan.kind_of_therapy}}
       </div>
       <div class="date">
         {{plan.date_time | date}}
+      </div>
+      <div class="time">
+        {{plan.date_time | date : 'shortTime'}}
       </div>
     </div>
   </div>
@@ -53,14 +59,20 @@
   <div class="month-info">
     <h2>Day info:</h2>
     <div class='plan' *ngFor="let plan of selectedDayPlan$ | async">
-      <div class="id">
+      <div class="therapist">
         {{plan.therapist}}
+      </div>
+      <div class="patient">
+        {{plan.patient_name}}
       </div>
       <div class="kind_of_therapy">
         {{plan.kind_of_therapy}}
       </div>
       <div class="date">
         {{plan.date_time | date}}
+      </div>
+      <div class="time">
+        {{plan.date_time | date : 'shortTime'}}
       </div>
     </div>
   </div>
