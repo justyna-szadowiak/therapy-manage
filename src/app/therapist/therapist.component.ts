@@ -18,6 +18,7 @@ export class TherapistComponent implements OnInit {
   days = new FormControl();
   dayList: number[] = [];
   dataByMonth$: Observable<any> | undefined;
+  selectedDayPlan$: BehaviorSubject<Plan[]> = new BehaviorSubject<Plan[]>([])
 
   constructor(
     public endpoints: TherapyManagerBackendService
@@ -51,5 +52,21 @@ export class TherapistComponent implements OnInit {
     })
   }
 
+  onSelectedChange(event: Date) {
+    this.monthPlan$.pipe(
+      take(1),
+      map((plans: Plan[]) => {
+        return plans.filter((plan: Plan) => {
+          let planDate = new Date(plan.date_time);
+          let planDateString = `${planDate.getDay()}/${planDate.getMonth()}/${planDate.getUTCFullYear()}`
+          let eventDateString = `${event.getDay()}/${event.getMonth()}/${event.getUTCFullYear()}`
+          console.log(planDateString, eventDateString);
+          return planDateString === eventDateString;
+        })
+      })
+    ).subscribe((plans: Plan[]) => {
+      this.selectedDayPlan$.next(plans)
+    })
+  }
 }
 

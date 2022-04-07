@@ -32,12 +32,27 @@
 <div class="calendar-container">
   <div class="calendar">
     <mat-card class="therapist-calendar">
-      <mat-calendar [(selected)]="selected" (monthSelected)="onMonthSelected($event)"></mat-calendar>
+      <mat-calendar (selectedChange)="onSelectedChange($event)" [(selected)]="selected" (monthSelected)="onMonthSelected($event)"></mat-calendar>
     </mat-card>
   </div>
-  <div class="day-info">
-    Hello here:
+  <div class="month-info">
+    <h2>Month info:</h2>
     <div class='plan' *ngFor="let plan of monthPlan$ | async">
+      <div class="id">
+        {{plan.therapist}}
+      </div>
+      <div class="kind_of_therapy">
+        {{plan.kind_of_therapy}}
+      </div>
+      <div class="date">
+        {{plan.date_time | date}}
+      </div>
+    </div>
+  </div>
+
+  <div class="month-info">
+    <h2>Day info:</h2>
+    <div class='plan' *ngFor="let plan of selectedDayPlan$ | async">
       <div class="id">
         {{plan.therapist}}
       </div>
