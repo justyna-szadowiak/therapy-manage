@@ -19,6 +19,7 @@ export class TherapistPlanComponent implements OnInit {
   }
 
   public displayedColumns: string[] = [
+    'therapist',
     'patient_name',
     'kind_of_therapy',
     'date_time',

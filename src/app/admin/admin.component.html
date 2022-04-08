@@ -6,11 +6,11 @@
 </pre> -->
 
 <section>
-  <div class="label"></div>
   <div class="button-row">
     <div class="flex-container">
       <div class="button-container">
-        <button mat-fab color="primary" aria-label="Icon button with a add icon">
+        <button mat-fab color="primary" aria-label="Icon button with a add icon"
+        (click)="onClickedAdd()">
           <mat-icon>add</mat-icon>
         </button>
         <button mat-fab color="primary" aria-label="Icon button with a edit icon">
@@ -19,10 +19,57 @@
       </div>
     </div>
   </div>
+  <div class="menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" color="primary" aria-label="Icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" class="menu-admin">
+      <button mat-menu-item>
+        <mat-icon matBadge="13" matBadgeColor="warn">message</mat-icon>
+        <span>Messages</span>
+      </button>
+    </mat-menu>
+  </div>
 </section>
+<div class="calendar-container">
+  <div class="calendar">
+    <mat-card class="demo-inline-calendar-card admin-calendar">
+      <mat-calendar (selectedChange)="onSelectedChange($event)" [(selected)]="selected" (monthSelected)="onMonthSelected($event)"></mat-calendar>
+    </mat-card>
+  </div>
+  <div class="month-info">
+    <h2>Plan for month:</h2>
+    <div class="plan" *ngFor="let plan of monthPlan$ | async">
+      <div class="therapist">
+        {{plan.therapist}}
+      </div>
+      <div class="kind_of_therapy">
+        {{plan.kind_of_therapy}}
+      </div>
+      <div class="date">
+        {{plan.date_time | date}}
+      </div>
+      <div class="time">
+        {{plan.date_time | date : "shortTime"}}
+      </div>
+    </div>
+  </div>
 
-<mat-card class="demo-inline-calendar-card admin-calendar">
-  <mat-calendar [(selected)]="selected"></mat-calendar>
-</mat-card>
-<p>Selected date: {{selected}}</p>
-
+  <div class="day-info">
+    <h2>Plan for day: </h2>
+    <div class="plan" *ngFor="let plan of selectedDayPlan$ | async">
+      <div class="therapist">
+        {{plan.therapist}}
+      </div>
+      <div class="kind_of_therapy">
+        {{plan.kind_of_therapy}}
+      </div>
+      <div class="date">
+        {{plan.date_time | date}}
+      </div>
+      <div class="time">
+        {{plan.date_time | date : "shortTime"}}
+      </div>
+    </div>
+  </div>
+</div>

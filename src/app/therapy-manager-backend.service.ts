@@ -29,10 +29,10 @@ export class TherapyManagerBackendService {
   }
 
   getPlanForTherapistByMonth(month: string): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:3000/calendar/${month}`)
+    return this.http.get<any[]>(`http://localhost:3000/plannerForTherapist/${month}`)
   }
 
-  getAllRole(): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:3000/roles');
+  getPlanForAdminByMonth(month: string): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:3000/calendar/${month}`)
   }
 }

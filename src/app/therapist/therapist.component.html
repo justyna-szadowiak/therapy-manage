@@ -6,8 +6,8 @@
           <mat-icon>edit</mat-icon>
         </button>
       </div>
-      <div>
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <div class="menu">
+        <button mat-icon-button [matMenuTriggerFor]="menu" color="primary" aria-label="Icon-button with a menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="menu-therapy">
@@ -36,8 +36,8 @@
     </mat-card>
   </div>
   <div class="month-info">
-    <h2>Month info:</h2>
-    <div class='plan' *ngFor="let plan of monthPlan$ | async">
+    <h2>Plan for month:</h2>
+    <div class="plan" *ngFor="let plan of monthPlan$ | async">
       <div class="therapist">
         {{plan.therapist}}
       </div>
@@ -51,14 +51,14 @@
         {{plan.date_time | date}}
       </div>
       <div class="time">
-        {{plan.date_time | date : 'shortTime'}}
+        {{plan.date_time | date : "shortTime"}}
       </div>
     </div>
   </div>
 
-  <div class="month-info">
-    <h2>Day info:</h2>
-    <div class='plan' *ngFor="let plan of selectedDayPlan$ | async">
+  <div class="day-info">
+    <h2>Plan for day: </h2>
+    <div class="plan" *ngFor="let plan of selectedDayPlan$ | async">
       <div class="therapist">
         {{plan.therapist}}
       </div>
@@ -77,16 +77,3 @@
     </div>
   </div>
 </div>
-
-<!--<mat-form-field appearance="fill">-->
-<!--  <mat-label>Mark days when not available</mat-label>-->
-<!--  <mat-select [formControl]="days" multiple>-->
-<!--    <mat-select-trigger>-->
-<!--      {{days.value ? days.value[0] : ''}}-->
-<!--      <span *ngIf="days.value?.length > 1" class="additional-selection">-->
-<!--        (+{{days.value.length - 1}} {{days.value?.length === 2 ? 'other' : 'others'}})-->
-<!--      </span>-->
-<!--    </mat-select-trigger>-->
-<!--    <mat-option *ngFor="let days of dayList" [value]="days">{{days}}</mat-option>-->
-<!--  </mat-select>-->
-<!--</mat-form-field>-->

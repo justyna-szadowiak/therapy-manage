@@ -13,6 +13,12 @@
   align-items: stretch;
   justify-content: space-between;
 
+  .calendar {
+    .therapist-calendar {
+      margin: 0px 10px
+    }
+  }
+
   .calendar,
   .day-info {
     width: calc(50% - 5px);

@@ -13,7 +13,7 @@ export interface Therapy {
 
 export interface Therapist {
   id: number;
-  therapist_vocational_education: string;
+  therapist_title: string;
   therapist_name: string;
   therapist_surename: string;
 }

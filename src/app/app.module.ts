@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Routes, RouterModule } from '@angular/router';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,6 +10,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +23,8 @@ import { TherapistComponent } from './therapist/therapist.component';
 import { ParentComponent } from './parent/parent.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TherapistPlanComponent } from './therapist-plan/therapist-plan.component';
+import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
+import { LogInComponent } from './log-in/log-in.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,8 @@ import { TherapistPlanComponent } from './therapist-plan/therapist-plan.componen
     TherapistComponent,
     ParentComponent,
     TherapistPlanComponent,
+    AppointmentFormComponent,
+    LogInComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,9 +50,15 @@ import { TherapistPlanComponent } from './therapist-plan/therapist-plan.componen
     MatTableModule,
     MatPaginatorModule,
     MatExpansionModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule
+  ],
+  entryComponents: [
+    AppointmentFormComponent
   ],
   providers: [MatDatepickerModule, MatNativeDateModule],
   bootstrap: [AppComponent],

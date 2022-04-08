@@ -1,0 +1,23 @@
+<div class="main-container">
+  <mat-card class="jumbotron">
+    <mat-card-header>
+      <mat-card-title>Log in</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="logIn()" [formGroup]="loginForm" class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Login</mat-label>
+          <input [formControl]="loginControl" matInput />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input [formControl]="passwordControl" type="password" matInut />
+        </mat-form-field>
+
+        <button type="submit" mat-raised-button color="accent" [disabled]="isSignInDisabled$ | async">Log In</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+

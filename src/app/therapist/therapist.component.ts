@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from '@angular/forms';
-import * as moment from 'moment';
-import { BehaviorSubject, filter, map, Observable, Subject, take, takeUntil } from "rxjs";
+import { FormControl } from '@angular/forms';
+import { BehaviorSubject, filter, map, Observable, take } from "rxjs";
 import { TherapyManagerBackendService } from "../therapy-manager-backend.service";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { PlanForTherapist } from "../interfaces";
@@ -14,11 +13,11 @@ import { PlanForTherapist } from "../interfaces";
 })
 export class TherapistComponent implements OnInit {
   selected: Date | null = null;
-  monthPlan$: BehaviorSubject<PlanForTherapist[]> = new BehaviorSubject<PlanForTherapist[]>([])
+  monthPlan$: BehaviorSubject<PlanForTherapist[]> = new BehaviorSubject<PlanForTherapist[]>([]);
   days = new FormControl();
   dayList: number[] = [];
   dataByMonth$: Observable<any> | undefined;
-  selectedDayPlan$: BehaviorSubject<PlanForTherapist[]> = new BehaviorSubject<PlanForTherapist[]>([])
+  selectedDayPlan$: BehaviorSubject<PlanForTherapist[]> = new BehaviorSubject<PlanForTherapist[]>([]);
 
   constructor(
     public endpoints: TherapyManagerBackendService
