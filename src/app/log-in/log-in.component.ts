@@ -10,11 +10,34 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent implements OnInit {
+  public loginForm = new FormGroup({
+    login: new FormControl(''),
+    password: new FormControl(''),
+  });
+  // public isSignInDisabled$: Observable<boolean>;
+
   constructor() { }
 
-  ngOnInit(): void {
+    public ngOnInit(): void {
+      // this.isSignInDisabled$ = combineLatest([this.loginControl.valueChanges, this.passwordControl.valueChanges]).pipe(
+      //   map(([login, password]: [string, string]) => !(login && password)),
+      //   startWith(true)
+      // );
+    }
+
+  public get loginControl(): FormControl {
+    return this.loginForm.get('login') as FormControl;
   }
 
+  public get passwordControl(): FormControl {
+    return this.loginForm.get('password') as FormControl;
+  }
+
+  public logIn(): void {
+    const login = this.loginControl.value;
+    const passwordMD5 = btoa(this.passwordControl.value);
+    // this.
+  }
 }
 
 
