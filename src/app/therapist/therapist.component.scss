@@ -2,10 +2,11 @@
   margin: 20px 20px 0 20px;
 }
 
-.menu-therapy {
-  background-color: #757575;
+.menu {
+  .menu-therapy {
+    background-color: #757575;
+  }
 }
-
 
 .calendar-container {
   display: flex;
@@ -13,12 +14,13 @@
   justify-content: space-between;
 
   .calendar,
-  .day-info{
+  .day-info {
     width: calc(50% - 5px);
 
   }
 
+  .month-info,
   .day-info {
-
+    margin: 0 30px;
   }
 }
