@@ -1,23 +1,26 @@
 <div class="main-container">
-  <mat-card class="jumbotron">
+  <mat-card>
     <mat-card-header>
       <mat-card-title>Log in</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form (ngSubmit)="logIn()" [formGroup]="loginForm" class="form-group">
+      <form (submit)="logIn()" [formGroup]="loginForm" class="login-form">
         <mat-form-field appearance="outline">
-          <mat-label>Login</mat-label>
-          <input [formControl]="loginControl" matInput />
+          <mat-label>Email</mat-label>
+          <input matInput [formControl]="loginControl" type="email">
         </mat-form-field>
-
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input [formControl]="passwordControl" type="password" matInut />
+          <input matInput [formControl]="passwordControl" type="password">
         </mat-form-field>
 
-        <!-- <button type="submit" mat-raised-button color="accent" [disabled]="isSignInDisabled$ | async">Log In</button> -->
+         <button type="submit" mat-raised-button color="accent">Log In</button>
       </form>
+      <mat-error *ngIf="isErrorShowing">
+        Incorrect username or password
+      </mat-error>
     </mat-card-content>
   </mat-card>
 </div>
+
 

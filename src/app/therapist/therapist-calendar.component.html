@@ -1,0 +1,40 @@
+<app-menu></app-menu>
+<div class="calendar-container">
+  <div class="calendar">
+    <mat-card class="therapist-calendar">
+      <mat-calendar (selectedChange)="onSelectedChange($event)" [(selected)]="selected" (monthSelected)="onMonthSelected($event)"></mat-calendar>
+    </mat-card>
+  </div>
+  <div class="month-info">
+    <h2>Plan for month:</h2>
+
+    <mat-list>
+      <ng-container *ngFor="let plan of monthPlan$ | async">
+        <div mat-subheader>{{plan.therapist}}</div>
+
+        <mat-list-item>
+          <div mat-line>{{plan.kind_of_therapy}}</div>
+          <div mat-line>{{plan.date_time | date}}</div>
+          <div mat-line>{{plan.date_time | date : "shortTime"}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </mat-list>
+  </div>
+
+  <div class="day-info">
+    <h2>Plan for day: </h2>
+
+    <mat-list>
+      <ng-container *ngFor="let plan of selectedDayPlan$ | async">
+        <div mat-subheader>{{plan.therapist}}</div>
+        <mat-list-item>
+          <div mat-line>{{plan.kind_of_therapy}}</div>
+          <div mat-line>{{plan.date_time | date}}</div>
+          <div mat-line>{{plan.date_time | date : "shortTime"}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </mat-list>
+  </div>
+</div>

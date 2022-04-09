@@ -1,18 +1,24 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Therapist, Therapy } from '../interfaces';
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {Therapist, Therapy} from '../interfaces';
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-appointment-form',
   templateUrl: './appointment-form.component.html',
   styleUrls: ['./appointment-form.component.scss']
 })
-export class AppointmentFormComponent implements OnInit {
+export class AppointmentFormComponent {
   therapists: Therapist[] = [];
-
   therapies: Therapy[] = [];
-
   name: string | undefined;
+
+  public appointmentForm = new FormGroup({
+    patientName: new FormControl(''),
+    therapistName: new FormControl(''),
+    therapy: new FormControl(''),
+    date: new FormControl(''),
+  });
 
   constructor(
     public dialogRef: MatDialogRef<AppointmentFormComponent>,
@@ -22,7 +28,7 @@ export class AppointmentFormComponent implements OnInit {
     this.therapies = this.data.therapies;
   }
 
-  ngOnInit(): void {
-
+  public submit() {
+    this.dialogRef.close();
   }
 }

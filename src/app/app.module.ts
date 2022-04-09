@@ -18,23 +18,26 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AdminComponent } from './admin/admin.component';
-import { TherapistComponent } from './therapist/therapist.component';
-import { ParentComponent } from './parent/parent.component';
+import { AdminCalendarComponent } from './admin/admin-calendar.component';
+import { TherapistCalendarComponent } from './therapist/therapist-calendar.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TherapistPlanComponent } from './therapist-plan/therapist-plan.component';
+import { TherapiesListComponent } from './therapist-plan/therapies-list.component';
 import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
 import { LogInComponent } from './log-in/log-in.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { MenuComponent } from './menu/menu.component';
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent,
-    TherapistComponent,
-    ParentComponent,
-    TherapistPlanComponent,
+    AdminCalendarComponent,
+    TherapistCalendarComponent,
+    TherapiesListComponent,
     AppointmentFormComponent,
     LogInComponent,
+    NotFoundComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,8 @@ import { LogInComponent } from './log-in/log-in.component';
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatListModule
   ],
   entryComponents: [
     AppointmentFormComponent

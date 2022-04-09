@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { combineLatest, Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import {Component} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {ApiService} from "../api.service";
+import {Router} from "@angular/router";
+import {HttpErrorResponse} from "@angular/common/http";
 
 
 @Component({
@@ -9,21 +10,15 @@ import { map, startWith } from 'rxjs/operators';
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.scss']
 })
-export class LogInComponent implements OnInit {
+export class LogInComponent {
+  public isErrorShowing: boolean = false;
+
   public loginForm = new FormGroup({
     login: new FormControl(''),
     password: new FormControl(''),
   });
-  // public isSignInDisabled$: Observable<boolean>;
 
-  constructor() { }
-
-    public ngOnInit(): void {
-      // this.isSignInDisabled$ = combineLatest([this.loginControl.valueChanges, this.passwordControl.valueChanges]).pipe(
-      //   map(([login, password]: [string, string]) => !(login && password)),
-      //   startWith(true)
-      // );
-    }
+  constructor(private apiService: ApiService, private router: Router) { }
 
   public get loginControl(): FormControl {
     return this.loginForm.get('login') as FormControl;
@@ -33,11 +28,15 @@ export class LogInComponent implements OnInit {
     return this.loginForm.get('password') as FormControl;
   }
 
-  public logIn(): void {
-    const login = this.loginControl.value;
-    const passwordMD5 = btoa(this.passwordControl.value);
-    // this.
+  public async logIn(): Promise<void> {
+    try {
+      this.isErrorShowing = false;
+      const login = this.loginControl.value;
+      const passwordMD5 = btoa(this.passwordControl.value);
+      const isUserAdmin = await this.apiService.logIn(login, passwordMD5);
+      this.router.navigateByUrl(isUserAdmin ? 'admin' : 'therapist');
+    } catch (e: HttpErrorResponse | any) {
+      this.isErrorShowing = e.status === 401;
+    }
   }
 }
-
-

@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, filter, map, Observable, take, lastValueFrom  } from 'rxjs';
-import { Patient, Therapy, Therapist, Plan } from '.././interfaces';
-import { TherapyManagerBackendService } from '../therapy-manager-backend.service';
-import { MatDialog } from '@angular/material/dialog';
-import { AppointmentFormComponent } from '../appointment-form/appointment-form.component';
+import {Component, OnInit} from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {UntilDestroy} from '@ngneat/until-destroy';
+import {BehaviorSubject, lastValueFrom, map, Observable, take} from 'rxjs';
+import {Patient, Plan, Therapist, Therapy} from '../interfaces';
+import {ApiService} from '../api.service';
+import {MatDialog} from '@angular/material/dialog';
+import {AppointmentFormComponent} from '../appointment-form/appointment-form.component';
 
 @UntilDestroy()
 @Component({
   selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss'],
+  templateUrl: './admin-calendar.component.html',
+  styleUrls: ['./admin-calendar.component.scss'],
 })
-export class AdminComponent implements OnInit {
+export class AdminCalendarComponent implements OnInit {
   selected: Date | null | undefined;
   patients$: Observable<Patient[]>;
   therapies$: Observable<Therapy[]>;
@@ -26,7 +26,7 @@ export class AdminComponent implements OnInit {
   selectedDayPlan$: BehaviorSubject<Plan[]> = new BehaviorSubject<Plan[]>([]);
 
 
-  constructor(private endpoints: TherapyManagerBackendService, private dialog: MatDialog) {
+  constructor(private endpoints: ApiService, private dialog: MatDialog) {
     this.patients$ = this.endpoints.getAllPatients();
     this.therapies$ = this.endpoints.getAllTherapies();
     this.therapists$ = this.endpoints.getAllTherapists();
@@ -46,20 +46,8 @@ export class AdminComponent implements OnInit {
     this.dataByMonth$ = this.endpoints.getAllPlanners();
     this.dataByMonth$ = this.endpoints.getPlanForAdminByMonth('3');
 
-    this.dataByMonth$.pipe(
-      untilDestroyed(this),
-      filter((obj) => {
-        return obj.therapist === "dr Elżbieta Nowak"
-      }),
-      map((obj) => {
-        return {
-          therapist: obj.therapist,
-          date: obj.data
-        }
-      })
-    ).subscribe((data) => {
-      console.log(data)
-    })
+    this.onMonthSelected(new Date());
+    this.onSelectedChange(new Date());
   }
 
   onSelectedChange(event: Date) {
@@ -81,7 +69,7 @@ export class AdminComponent implements OnInit {
   async onClickedAdd(){
     const therapists = await lastValueFrom(this.therapists$);
     const therapies = await lastValueFrom(this.therapies$);
-    const dialogRef = this.dialog.open(AppointmentFormComponent, {
+    this.dialog.open(AppointmentFormComponent, {
       width: '400px',
       data: { therapists, therapies }
     });

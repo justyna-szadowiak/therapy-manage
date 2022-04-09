@@ -1,0 +1,15 @@
+<mat-card>
+  <div class="button-row menu">
+    <a mat-button routerLink="/admin" *ngIf="user?.is_admin" target="_self" color="primary">Admin</a>
+    <a mat-button routerLink="/therapist" target="_self" color="primary">Therapists</a>
+    <a mat-button routerLink="/therapist/therapies" target="_self" color="primary">Therapies</a>
+
+    <div class="user">
+      <span *ngIf="user?.title"> {{user?.title}}&nbsp;</span>
+      <span *ngIf="user?.name"> {{user?.name}}&nbsp;</span>
+      <span *ngIf="user?.middle_name"> {{user?.middle_name}}&nbsp;</span>
+      <span *ngIf="user?.surname"> {{user?.surname}}&nbsp;</span>
+    </div>
+    <a mat-raised-button routerLink="/therapist/therapies" target="_self" color="accent" class="logout" (click)="logOut()">LogOut</a>
+  </div>
+</mat-card>

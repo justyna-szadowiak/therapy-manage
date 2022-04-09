@@ -32,8 +32,17 @@ export interface PlanForTherapist {
   date_time: number;
 }
 
-export interface Role {
-  id: number;
-  role: string;
-  name: string;
+export type JwtPayload<T> = T & {
+  iat: number;
+  exp: number;
+}
+
+export interface User {
+  id: number,
+  name: string,
+  middle_name: string,
+  surname: string,
+  title: string,
+  email: string,
+  is_admin: boolean;
 }

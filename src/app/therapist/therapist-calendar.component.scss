@@ -3,29 +3,27 @@
 }
 
 .menu {
-  .menu-admin {
+  .menu-therapy {
     background-color: #757575;
   }
-}
-
-.button-container {
-  margin: 20px 20px 0 20px;
 }
 
 .calendar-container {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
+  margin-top: 20px;
 
   .calendar {
-    .admin-calendar {
-      margin: 0px 10px
+    .therapist-calendar {
+      margin: 0 10px
     }
   }
 
   .calendar,
   .day-info {
     width: calc(50% - 5px);
+
   }
 
   .month-info,
