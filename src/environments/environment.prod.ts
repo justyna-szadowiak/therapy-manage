@@ -6,6 +6,6 @@ export interface Environment {
 
 export const environment: Environment = {
   production: true,
-  apiUrl: '',
+  apiUrl: 'https://therapy-manager.herokuapp.com',
   cookieKey: 'th'
 };
